@@ -1,0 +1,18 @@
+# Data pribadi (kartu, akun, kunci API) - JANGAN diunggah
+config.json
+*.backup.json
+.env
+
+# Dibuat otomatis saat dijalankan
+profiles/
+screenshots/
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.log
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store

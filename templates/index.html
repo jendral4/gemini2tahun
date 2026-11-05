@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Konsol Otomatis Penuh Google AI Ultra (5x / 20x)</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --panel: #131b2e;
+      --panel-hover: #19233c;
+      --border: #23304f;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --purple: #8b5cf6;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 18px 24px;
+    }
+    /* Top Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(135deg, #16213e 0%, #0f172a 100%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+    .header-left h1 {
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+    }
+    .badge-pro {
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      font-size: 12px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .header-left p {
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-top: 4px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    /* Buttons & Inputs */
+    button {
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--primary);
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    button:hover {
+      background: var(--primary-hover);
+    }
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .btn-success {
+      background: var(--success);
+    }
+    .btn-success:hover {
+      background: #059669;
+    }
+    .btn-danger {
+      background: var(--danger);
+    }
+    .btn-danger:hover {
+      background: #dc2626;
+    }
+    .btn-secondary {
+      background: #1e293b;
+      border-color: #334155;
+      color: #cbd5e1;
+    }
+    .btn-secondary:hover {
+      background: #334155;
+      color: #fff;
+    }
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 12px;
+      border-radius: 6px;
+    }
+    input, select, textarea {
+      background: #0b1120;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 8px 11px;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--primary);
+    }
+    /* Main Grid */
+    .top-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #f8fafc;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .form-group.col-2 {
+      grid-column: span 2;
+    }
+    .form-group.col-4 {
+      grid-column: span 4;
+    }
+    .form-group label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+      font-size: 13px;
+      color: #cbd5e1;
+      cursor: pointer;
+    }
+    .checkbox-row input {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+    /* Pipeline Steps Legend */
+    .pipeline-bar {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .pipe-item {
+      background: #111827;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+    .pipe-item strong {
+      display: block;
+      color: #60a5fa;
+      margin-bottom: 2px;
+    }
+    .pipe-item span {
+      color: var(--muted);
+      font-size: 11.5px;
+    }
+    /* Accounts Table */
+    .table-wrap {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 11px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 12px;
+      background: #0f172a;
+    }
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .totp-pill {
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 3px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .totp-rem {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    /* Status Badges */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .status-pending {
+      background: rgba(148, 163, 184, 0.15);
+      color: #cbd5e1;
+    }
+    .status-running {
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      animation: pulse 1.5s infinite;
+    }
+    .status-waiting_human {
+      background: rgba(245, 158, 11, 0.25);
+      color: #fbbf24;
+      border: 1px solid #f59e0b;
+      animation: pulse 1s infinite;
+    }
+    .status-completed {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+    .status-error {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.65; }
+    }
+    /* Step Dots */
+    .step-dots {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+    .step-dot {
+      width: 22px;
+      height: 18px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1e293b;
+      color: #64748b;
+      border: 1px solid #334155;
+    }
+    .step-dot.done {
+      background: rgba(16, 185, 129, 0.25);
+      color: #34d399;
+      border-color: #10b981;
+    }
+    .step-dot.active {
+      background: #2563eb;
+      color: #fff;
+      border-color: #60a5fa;
+    }
+    .step-msg {
+      font-size: 12px;
+      color: var(--muted);
+      max-width: 310px;
+      word-break: break-all;
+    }
+    /* Log Terminal */
+    .terminal {
+      background: #070a12;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      height: 270px;
+      overflow-y: auto;
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #a7f3d0;
+    }
+    .log-line {
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .log-warn { color: #fde047; font-weight: 600; }
+    .log-err { color: #f87171; font-weight: 600; }
+    .log-ok { color: #34d399; }
+    /* Modal for Screenshot */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 24px;
+    }
+    .modal-box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      max-width: 1100px;
+      max-height: 90vh;
+      overflow: auto;
+      padding: 16px;
+    }
+    .modal-box img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>
+        🚀 Konsol Otomatis Penuh Google AI Pro (5 TB) Gratis Dua Tahun
+        <span class="badge-pro">US$0.00 tanpa biaya · tumpuk hingga 24 bulan (2028-10) · berhenti langganan otomatis</span>
+      </h1>
+      <p>Mendukung akun biasa maupun akun 2FA (mengisi email dan kata sandi secara otomatis, plus email pemulihan / kode 2FA). Alur otomatis penuh: verifikasi login ➔ lapisan pertama 12M gratis ($0) ➔ lapisan kedua 6M gratis ($0) ➔ lapisan ketiga 6M gratis hingga batas 24 bulan ($0) ➔ berhenti langganan otomatis di Play</p>
+    </div>
+    <div class="header-actions">
+      <select id="batchStartStep" title="Langkah awal eksekusi batch">
+        <option value="1">Mulai dari Step 1 (seluruh alur tanpa biaya hingga 2 tahun + berhenti langganan)</option>
+        <option value="2">Mulai dari Step 2 (sudah login, langsung jalankan tiga lapisan $0)</option>
+        <option value="3">Mulai dari Step 3 (sudah ada 12M, lanjutkan lapisan kedua + ketiga $0)</option>
+        <option value="4">Mulai dari Step 4 (sudah ada 18M, jalankan lapisan terakhir hingga 24M + berhenti langganan)</option>
+        <option value="5">Mulai dari Step 5 (hanya membatalkan perpanjangan otomatis di Google Play)</option>
+      </select>
+      <button class="btn-success" id="btnBatchRun" onclick="runBatch()">
+        ▶ Jalankan Otomatis Semua Akun yang Menunggu
+      </button>
+      <button class="btn-danger" onclick="stopAll()">
+        ⏹ Hentikan Tugas
+      </button>
+    </div>
+  </div>
+
+  <!-- 5-Step Pipeline Overview -->
+  <div class="pipeline-bar">
+    <div class="pipe-item">
+      <strong>Step 1 · Login & Verifikasi</strong>
+      <span>Isi email & sandi otomatis + email pemulihan / kode 2FA</span>
+    </div>
+    <div class="pipe-item">
+      <strong>Step 2 · Lapisan 1: 12M Gratis ($0)</strong>
+      <span>12M Pro 5TB + uji coba YT (kartu ditautkan otomatis jika belum ada)</span>
+    </div>
+    <div class="pipe-item">
+      <strong>Step 3 · Lapisan 2: Tambah 6M ($0)</strong>
+      <span>S25 Pro 6M + uji coba YT Mode 5, diperpanjang hingga 18 bulan</span>
+    </div>
+    <div class="pipe-item">
+      <strong>Step 4 · Lapisan 3: Batas 6M ($0)</strong>
+      <span>Pixel 6M + uji coba YT Mode 5, genap 24 bulan (2028-10)</span>
+    </div>
+    <div class="pipe-item">
+      <strong>Step 5 · Berhenti Langganan Otomatis</strong>
+      <span>Batalkan perpanjangan di Play Store, tangkapan layar sebagai bukti (US$0.00)</span>
+    </div>
+  </div>
+
+  <!-- Top Config + Import Grid -->
+  <div class="top-grid">
+    <!-- Left: Global Plan & Card Config -->
+    <div class="card">
+      <div class="card-title">
+        <span>⚙️ Konfigurasi Wilayah Bebas Pajak, Paket Pro Gratis Dua Tahun, dan Kartu Bank</span>
+        <button class="btn-sm" onclick="saveConfig()">💾 Simpan Konfigurasi</button>
+      </div>
+      <div class="form-grid">
+        <div class="form-group col-2">
+          <label>🌍 Wilayah Target / Zona Kode Pos Bebas Pajak (paket Pro gratis dua tahun selalu memakai negara bagian bebas pajak AS, 97201)</label>
+          <select id="cfgTargetRegion" onchange="onRegionChange(this.value)">
+            <option value="US">🇺🇸 Zona Bebas Pajak AS (US / USD · Oregon 97201) — wajib dipilih untuk Pro (5 TB) gratis dua tahun US$0.00</option>
+          </select>
+        </div>
+        <div class="form-group col-2">
+          <label>🎯 Paket yang Dijalankan</label>
+          <select id="cfgTargetPlan">
+            <option value="pro_2year_zero">🎁 Google AI Pro (5 TB) gratis dua tahun — US$0.00 sepanjang proses, genap 24 bulan hingga 2028-10</option>
+          </select>
+        </div>
+        <div class="form-group col-2">
+          <label>Nomor Kartu (mendukung kartu valas Visa / Mastercard, hanya untuk verifikasi uji coba $0.00)</label>
+          <input type="text" id="cfgCardNumber" placeholder="Masukkan nomor kartu Visa / Mastercard Anda (16 digit)" />
+        </div>
+        <div class="form-group">
+          <label>Masa Berlaku (Bulan / Tahun)</label>
+          <div style="display:flex; gap:6px;">
+            <input type="text" id="cfgExpMonth" placeholder="Bulan (mis. 08)" style="width:50%;" />
+            <input type="text" id="cfgExpYear" placeholder="Tahun (mis. 29)" style="width:50%;" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Kode Keamanan (CVC)</label>
+          <input type="text" id="cfgCvc" placeholder="Kode 3 digit" />
+        </div>
+        <div class="form-group">
+          <label>Nama Pemegang Kartu</label>
+          <input type="text" id="cfgHolder" placeholder="Nama dalam huruf Latin (mis. BUDI SANTOSO)" />
+        </div>
+        <div class="form-group col-2">
+          <label>Alamat Penagihan (Address Line 1)</label>
+          <input type="text" id="cfgAddr" placeholder="700 SW 5th Ave" />
+        </div>
+        <div class="form-group">
+          <label>Kode Pos Bebas Pajak / Negara Bagian</label>
+          <div style="display:flex; gap:6px;">
+            <input type="text" id="cfgZip" placeholder="97201" style="width:45%;" />
+            <input type="text" id="cfgProvince" placeholder="OR" style="width:55%;" />
+          </div>
+        </div>
+        <div class="form-group col-4">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <label>🛡️ Templat Proxy Global (kosongkan untuk memakai jaringan AS perangkat ini; tempel di sini jika ingin memakai proxy)</label>
+            <button type="button" class="btn-sm btn-secondary" onclick="testProxyNow()" id="btnTestProxy">🔍 Uji Konektivitas Proxy</button>
+          </div>
+          <input
+            type="text"
+            id="cfgProxyTemplate"
+            placeholder="Kosongkan untuk memakai jaringan perangkat ini (disarankan), atau isi http://user:pass@host:port"
+          />
+          <div id="proxyTestResult" style="font-size:12px; color:#34d399; margin-top:4px;">
+            ✅ Secara bawaan memakai jaringan AS perangkat ini (kode pos bebas pajak 97201, tiga lapisan US$0.00 tanpa potongan biaya)
+          </div>
+        </div>
+      </div>
+      <label class="checkbox-row">
+        <input type="checkbox" id="cfgAutoCancel" checked />
+        <span>✅ <strong>Perlindungan pembatalan perpanjangan otomatis Step 5</strong> (setelah genap 24 bulan, otomatis membuka Google Play untuk membatalkan perpanjangan dan mengunci masa berlaku 2028, US$0.00 tanpa potongan biaya)</span>
+      </label>
+    </div>
+
+    <!-- Right: Bulk Account Import -->
+    <div class="card" style="display:flex; flex-direction:column;">
+      <div class="card-title">
+        <span>📥 Impor Akun Massal (mendukung pemisah apa pun, email pemulihan dan kunci 2FA dikenali otomatis)</span>
+        <button class="btn-sm btn-success" onclick="importAccounts()">➕ Impor Daftar Akun</button>
+      </div>
+      <textarea
+        id="importText"
+        style="flex:1; width:100%; resize:none; font-family:Consolas,monospace; font-size:12.5px;"
+        placeholder="Satu akun per baris, mendukung pemisah ----, /, —, |, spasi, dll.:&#10;email----sandi----email pemulihan&#10;email/sandi/email pemulihan/kunci 2FA&#10;email—sandi—email pemulihan&#10;email----sandi----kunci 2FA"
+      ></textarea>
+      <div style="font-size:12px; color:var(--muted); margin-top:8px;">
+        💡 Tips: akun tanpa 2FA (dengan email pemulihan) maupun akun 2FA dapat langsung diimpor dan dijalankan secara otomatis!
+      </div>
+    </div>
+  </div>
+
+  <!-- Accounts Table Card -->
+  <div class="card" style="margin-bottom: 18px;">
+    <div class="card-title">
+      <span>📋 Antrean Akun & Pemantauan Progres Real-time (klik kode 2FA untuk menyalin)</span>
+      <span id="summaryStats" style="font-size:12.5px; color:var(--muted); font-weight:normal;">Memuat...</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:85px;">ID</th>
+            <th style="width:250px;">Email Google / Sandi / Email Pemulihan</th>
+            <th style="width:140px;">Metode Verifikasi / 2FA</th>
+            <th style="width:110px;">Status</th>
+            <th style="width:320px;">Progres Alur 5 Langkah Pro Gratis Dua Tahun</th>
+            <th style="width:155px;">Tanggal Kedaluwarsa</th>
+            <th style="width:75px;">Bukti</th>
+            <th>Aksi per Akun</th>
+          </tr>
+        </thead>
+        <tbody id="accountsTbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Live Logs Terminal -->
+  <div class="card">
+    <div class="card-title">
+      <span>🖥️ Log Eksekusi Otomatis Real-time (Playwright CDP + Ngbm Interceptor)</span>
+      <span style="font-size:12px; color:var(--muted); font-weight:normal;">Saat reCAPTCHA verifikasi manusia muncul ketika menautkan kartu, akan ada pemberitahuan agar Anda mencentang kotaknya; setelah itu proses berlanjut otomatis</span>
+    </div>
+    <div class="terminal" id="logTerminal"></div>
+  </div>
+
+  <!-- Screenshot Modal -->
+  <div class="modal-backdrop" id="imgModal" onclick="closeModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <strong id="modalTitle">Pratinjau Tangkapan Layar Bukti</strong>
+        <button class="btn-sm btn-secondary" onclick="closeModal()">✖ Tutup</button>
+      </div>
+      <img id="modalImg" src="" alt="screenshot" />
+    </div>
+  </div>
+
+  <script>
+    let configInitialized = false;
+    let selectedStartSteps = {};
+    let copiedAccountMap = {};
+    let openedBrowserMap = {};
+
+    async function fetchState() {
+      try {
+        const res = await fetch('/api/state');
+        const data = await res.json();
+
+        if (!configInitialized) {
+          document.getElementById('cfgTargetRegion').value = data.target_region || 'US';
+          document.getElementById('cfgTargetPlan').value = data.target_plan || 'pro_2year_zero';
+          document.getElementById('cfgAutoCancel').checked = data.auto_cancel !== false;
+          document.getElementById('cfgProxyTemplate').value = data.proxy_template || '';
+          const c = data.card || {};
+          document.getElementById('cfgCardNumber').value = c.number || '';
+          document.getElementById('cfgExpMonth').value = c.exp_month || '';
+          document.getElementById('cfgExpYear').value = c.exp_year || '';
+          document.getElementById('cfgCvc').value = c.cvc || '';
+          document.getElementById('cfgHolder').value = c.holder || '';
+          document.getElementById('cfgAddr').value = c.address_line1 || '700 SW 5th Ave';
+          document.getElementById('cfgZip').value = c.postal_code || '97201';
+          document.getElementById('cfgProvince').value = c.province || 'OR';
+          configInitialized = true;
+        }
+
+        renderAccounts(data.accounts || []);
+        renderLogs(data.logs || []);
+
+        const total = (data.accounts || []).length;
+        const done = (data.accounts || []).filter(a => a.status === 'completed').length;
+        const running = data.active_count || 0;
+        document.getElementById('summaryStats').textContent =
+          `Total ${total} akun | Selesai: ${done} | Berjalan: ${running}`;
+      } catch (e) {
+        console.error('State poll error:', e);
+      }
+    }
+
+    function statusBadgeHtml(status) {
+      const map = {
+        pending: ['status-pending', '⏳ Menunggu'],
+        running: ['status-running', '⚡ Berjalan'],
+        waiting_human: ['status-waiting_human', '🖐️ Menunggu verifikasi manusia'],
+        completed: ['status-completed', '✅ Selesai'],
+        error: ['status-error', '❌ Terhenti karena galat'],
+        stopped: ['status-pending', '⏹ Dihentikan']
+      };
+      const [cls, label] = map[status] || ['status-pending', status];
+      return `<span class="status-badge ${cls}">${label}</span>`;
+    }
+
+    function stepDotsHtml(curStep, status) {
+      let html = '<div class="step-dots">';
+      for (let s = 1; s <= 5; s++) {
+        let cls = '';
+        if (status === 'completed' || s < curStep) cls = 'done';
+        else if (s === curStep && (status === 'running' || status === 'waiting_human')) cls = 'active';
+        html += `<div class="step-dot ${cls}" title="Step ${s}">${s}</div>`;
+      }
+      html += '</div>';
+      return html;
+    }
+
+    function renderAccounts(accounts) {
+      const tbody = document.getElementById('accountsTbody');
+      // Jangan render ulang saat dropdown langkah awal sedang dipakai, agar daftar pilihan tidak tertutup sendiri
+      const activeEl = document.activeElement;
+      if (activeEl && activeEl.tagName === 'SELECT' && tbody.contains(activeEl)) return;
+      tbody.innerHTML = accounts.map(acc => {
+        const savedStart = selectedStartSteps[acc.id] || 1;
+        const shotBtn = acc.last_screenshot
+          ? `<button class="btn-sm btn-secondary" onclick="showScreenshot('${acc.id}', '${acc.last_screenshot}')">🖼 Lihat</button>`
+          : `<span style="color:var(--muted);font-size:12px;">-</span>`;
+
+        const totpHtml = (acc.totp_secret && acc.totp_now && acc.totp_now !== '------')
+          ? `<div class="totp-pill" onclick="copyText('${acc.totp_now}')" title="Klik untuk menyalin kode dinamis 6 digit">
+               <span>${acc.totp_now}</span>
+               <span class="totp-rem">${acc.totp_rem}s</span>
+             </div>`
+          : `<span style="font-size:12px; color:#34d399;">📧 Verifikasi email pemulihan</span>`;
+
+        return `
+          <tr>
+            <td><strong>${acc.id}</strong></td>
+            <td>
+              <div style="font-weight:600; color:#f1f5f9;">${acc.email}</div>
+              <div style="font-size:11.5px; color:var(--muted); font-family:Consolas,monospace;">
+                Sandi: ${acc.password}
+                ${acc.recovery_email ? `<br/>Pemulihan: ${acc.recovery_email}` : ''}
+                ${acc.ip_info ? `<span style="margin-left:6px; color:#38bdf8;">[${acc.ip_info}]</span>` : (acc.proxy ? `<span style="margin-left:6px; color:#a78bfa;">[Proxy khusus]</span>` : '')}
+              </div>
+            </td>
+            <td>${totpHtml}</td>
+            <td>${statusBadgeHtml(acc.status)}</td>
+            <td>
+              ${stepDotsHtml(acc.current_step || 0, acc.status)}
+              <div class="step-msg">${acc.step_message || ''}</div>
+            </td>
+            <td>
+              <span style="font-weight:600; color:${(acc.expiry_date || '').includes('2027年10月') || (acc.expiry_date || '').includes('2027年11月') || (acc.expiry_date || '').includes('2028') ? '#34d399' : '#e2e8f0'}">
+                ${acc.expiry_date || '-'}
+              </span>
+            </td>
+            <td>${shotBtn}</td>
+            <td>
+              <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                <select
+                  style="padding:4px 6px; font-size:12px;"
+                  onchange="selectedStartSteps['${acc.id}'] = parseInt(this.value); this.blur()"
+                >
+                  <option value="1" ${savedStart === 1 ? 'selected' : ''}>Jalankan dari Step 1</option>
+                  <option value="2" ${savedStart === 2 ? 'selected' : ''}>Dari Step 2: lapisan 1 12M ($0)</option>
+                  <option value="3" ${savedStart === 3 ? 'selected' : ''}>Dari Step 3: lapisan 2 6M ($0)</option>
+                  <option value="4" ${savedStart === 4 ? 'selected' : ''}>Dari Step 4: lapisan 3 batas ($0)</option>
+                  <option value="5" ${savedStart === 5 ? 'selected' : ''}>Dari Step 5: berhenti langganan</option>
+                </select>
+                <button
+                  class="btn-sm ${acc.is_running ? 'btn-danger' : 'btn-success'}"
+                  onclick="${acc.is_running ? `stopSingle('${acc.id}')` : `runSingle('${acc.id}')`}"
+                >
+                  ${acc.is_running ? '⏹ Hentikan' : '▶ Jalankan Otomatis'}
+                </button>
+                <button
+                  class="btn-sm ${openedBrowserMap[acc.id] ? 'btn-success' : 'btn-secondary'}"
+                  onclick="openBrowser('${acc.id}')"
+                  title="Buka jendela Chrome khusus akun ini secara manual"
+                >
+                  ${openedBrowserMap[acc.id] ? '✅ Terbuka' : '🌐 Browser'}
+                </button>
+                <button class="btn-sm btn-secondary" onclick="resetAccount('${acc.id}')" title="Reset status menjadi menunggu">
+                  🔄
+                </button>
+                <button class="btn-sm btn-secondary" onclick="deleteAccount('${acc.id}')" title="Hapus akun ini">
+                  🗑️
+                </button>
+                <button
+                  class="btn-sm ${copiedAccountMap[acc.id] ? 'btn-success' : 'btn-secondary'}"
+                  onclick="copyAccountFull('${acc.id}', '${acc.email}', '${acc.password}', '${acc.totp_secret || acc.recovery_email || ''}')"
+                  title="Salin informasi akun"
+                >
+                  ${copiedAccountMap[acc.id] ? '✅ Disalin' : '📋 Salin'}
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderLogs(logs) {
+      const term = document.getElementById('logTerminal');
+      const isAtBottom = term.scrollHeight - term.clientHeight <= term.scrollTop + 40;
+      term.innerHTML = logs.map(line => {
+        let cls = 'log-line';
+        if (line.includes('⚠️') || line.toLowerCase().includes('verifikasi manusia')) cls += ' log-warn';
+        else if (line.includes('❌') || line.toLowerCase().includes('galat')) cls += ' log-err';
+        else if (line.includes('✅') || line.includes('🎉')) cls += ' log-ok';
+        return `<div class="${cls}">${escapeHtml(line)}</div>`;
+      }).join('');
+      if (isAtBottom) {
+        term.scrollTop = term.scrollHeight;
+      }
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function onRegionChange(region) {
+      document.getElementById('cfgAddr').value = '700 SW 5th Ave';
+      document.getElementById('cfgZip').value = '97201';
+      document.getElementById('cfgProvince').value = 'OR';
+    }
+
+    async function testProxyNow() {
+      const btn = document.getElementById('btnTestProxy');
+      const resBox = document.getElementById('proxyTestResult');
+      btn.disabled = true;
+      btn.textContent = '⏳ Mendeteksi IP keluar...';
+      resBox.style.color = '#38bdf8';
+      resBox.textContent = 'Menguji konektivitas proxy...';
+      try {
+        const region = document.getElementById('cfgTargetRegion').value;
+        const tpl = document.getElementById('cfgProxyTemplate').value.trim();
+        const res = await fetch('/api/proxy/test', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ target_region: region, proxy_template: tpl })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          resBox.style.color = '#34d399';
+          resBox.textContent = '✅ ' + data.message;
+        } else {
+          resBox.style.color = '#f87171';
+          resBox.textContent = '❌ ' + data.message;
+        }
+      } catch (e) {
+        resBox.style.color = '#f87171';
+        resBox.textContent = '❌ Permintaan mengalami galat: ' + e;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '🔍 Uji Konektivitas Proxy';
+        fetchState();
+      }
+    }
+
+    async function saveConfig() {
+      const region = document.getElementById('cfgTargetRegion').value || 'US';
+      const payload = {
+        target_region: region,
+        target_plan: document.getElementById('cfgTargetPlan').value || 'pro_2year_zero',
+        auto_cancel: document.getElementById('cfgAutoCancel').checked,
+        proxy_template: document.getElementById('cfgProxyTemplate').value.trim(),
+        card: {
+          number: document.getElementById('cfgCardNumber').value.trim(),
+          exp_month: document.getElementById('cfgExpMonth').value.trim(),
+          exp_year: document.getElementById('cfgExpYear').value.trim(),
+          cvc: document.getElementById('cfgCvc').value.trim(),
+          holder: document.getElementById('cfgHolder').value.trim(),
+          address_line1: document.getElementById('cfgAddr').value.trim() || '700 SW 5th Ave',
+          postal_code: document.getElementById('cfgZip').value.trim() || '97201',
+          locality: 'Portland',
+          province: document.getElementById('cfgProvince').value.trim() || 'OR'
+        }
+      };
+      await fetch('/api/config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      fetchState();
+    }
+
+    async function importAccounts() {
+      const raw = document.getElementById('importText').value.trim();
+      if (!raw) return alert('Tempel akun yang akan diimpor ke kolom teks terlebih dahulu!');
+      const res = await fetch('/api/accounts/import', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ raw_text: raw })
+      });
+      const data = await res.json();
+      if (data.ok) {
+        document.getElementById('importText').value = '';
+        fetchState();
+      }
+    }
+
+    function validateCardBeforeRun(startStep) {
+      if (startStep > 4) return true;
+      const num = document.getElementById('cfgCardNumber').value.replace(/\s+/g, '');
+      const expM = document.getElementById('cfgExpMonth').value.trim();
+      const expY = document.getElementById('cfgExpYear').value.trim();
+      const cvc = document.getElementById('cfgCvc').value.trim();
+      if (num.length < 12 || !expM || !expY || !cvc) {
+        alert('⚠️ Isi data kartu pembayaran Anda (nomor kartu, bulan/tahun masa berlaku, kode CVC) di bagian [Konfigurasi Global & Penautan Kartu Bebas Pajak] di sebelah kiri sebelum memulai eksekusi!');
+        document.getElementById('cfgCardNumber').focus();
+        return false;
+      }
+      return true;
+    }
+
+    async function runSingle(accountId) {
+      const startStep = selectedStartSteps[accountId] || 1;
+      if (!validateCardBeforeRun(startStep)) return;
+      await saveConfig();
+      const res = await fetch('/api/run/single', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ account_id: accountId, start_step: startStep })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        alert(err.detail || 'Gagal memulai');
+      }
+      fetchState();
+    }
+
+    async function runBatch() {
+      const startStep = parseInt(document.getElementById('batchStartStep').value || '1');
+      if (!validateCardBeforeRun(startStep)) return;
+      await saveConfig();
+      const res = await fetch('/api/run/batch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ start_step: startStep })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        alert(err.detail || 'Gagal memulai batch');
+      }
+      fetchState();
+    }
+
+    async function stopSingle(accountId) {
+      await fetch('/api/stop', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ account_id: accountId })
+      });
+      fetchState();
+    }
+
+    async function stopAll() {
+      await fetch('/api/stop', { method: 'POST' });
+      fetchState();
+    }
+
+    async function openBrowser(accountId) {
+      openedBrowserMap[accountId] = true;
+      fetchState();
+      await fetch('/api/open_browser', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ account_id: accountId })
+      });
+      setTimeout(() => {
+        delete openedBrowserMap[accountId];
+        fetchState();
+      }, 2500);
+    }
+
+    async function resetAccount(accountId) {
+      await fetch('/api/accounts/reset', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ account_id: accountId })
+      });
+      fetchState();
+    }
+
+    async function deleteAccount(accountId) {
+      if (!confirm(`Yakin ingin menghapus akun ${accountId} dari daftar?`)) return;
+      await fetch('/api/accounts/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ account_id: accountId })
+      });
+      fetchState();
+    }
+
+    function showScreenshot(accId, filename) {
+      document.getElementById('modalTitle').textContent = `Tangkapan layar bukti terbaru ${accId} (${filename})`;
+      document.getElementById('modalImg').src = `/screenshots/${filename}?t=${Date.now()}`;
+      document.getElementById('imgModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('imgModal').style.display = 'none';
+    }
+
+    function copyText(txt) {
+      navigator.clipboard.writeText(txt);
+    }
+
+    function copyAccountFull(accId, email, password, totpSecret) {
+      const fullStr = `${email}----${password}----${totpSecret}`;
+      navigator.clipboard.writeText(fullStr);
+      copiedAccountMap[accId] = true;
+      fetchState();
+      setTimeout(() => {
+        delete copiedAccountMap[accId];
+        fetchState();
+      }, 2000);
+    }
+
+    fetchState();
+    setInterval(fetchState, 1500);
+  </script>
+</body>
+</html>
